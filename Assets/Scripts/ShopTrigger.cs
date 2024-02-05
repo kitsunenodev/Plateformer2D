@@ -20,9 +20,14 @@ public class ShopTrigger : MonoBehaviour
         if (isInrange && Input.GetKeyDown(KeyCode.E))
         {
             interactUI.enabled = false;
-            ShopManager.instance.OpenShop(itemsToSell,PNJName);
-            
-            
+            if (ShopManager.instance.animator.GetBool("isOpen"))
+            {
+                ShopManager.instance.CloseShop();
+            }
+            else
+            {
+               ShopManager.instance.OpenShop(itemsToSell,PNJName); 
+            }
         }
     }
     

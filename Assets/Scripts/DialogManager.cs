@@ -18,8 +18,6 @@ public class DialogManager : MonoBehaviour
         {
             Debug.LogError("there is more than one instance of DialogManager in the scene");
             return;
-
-           
         }
 
         instance = this;
@@ -58,9 +56,9 @@ public class DialogManager : MonoBehaviour
     {
         DialogText.text = "";
 
-        foreach (char Letter in sentence.ToCharArray())
+        foreach (char letter in sentence.ToCharArray())
         {
-            DialogText.text += Letter;
+            DialogText.text += letter;
             yield return new WaitForSeconds(0.01f);
         }
     }

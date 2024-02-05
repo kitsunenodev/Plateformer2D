@@ -18,8 +18,15 @@ public class DialogTrigger : MonoBehaviour
     {
         if (isInrange && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("dialogue enclenché");
-            TriggerDialog();
+            if (DialogManager.instance.animator.GetBool("isOpen"))
+            {
+                Debug.Log("dialogue enclenché");
+                DialogManager.instance.DisplayNextSentence();
+            }
+            else
+            {
+                TriggerDialog();
+            }
         }
     }
 

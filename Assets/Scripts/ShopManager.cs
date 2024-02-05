@@ -29,6 +29,7 @@ public class ShopManager : MonoBehaviour
         PNJNameText.text = PNJName;
         UpdateItemsToSell(items);
         animator.SetBool("isOpen", true);
+
     }
 
     void UpdateItemsToSell(Item[] items)
