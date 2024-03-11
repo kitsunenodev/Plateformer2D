@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     
     public float jumpForce;
 
-    public Rigidbody2D playerRigidbody;
+    public Rigidbody2D playerRigidBody;
     public CapsuleCollider2D playerCollider;
 
     private Vector3 velocity = Vector3.zero;
@@ -57,9 +58,9 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
         verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.fixedDeltaTime;
         
-        Flip(playerRigidbody.velocity.x);
+        Flip(playerRigidBody.velocity.x);
         
-        float characterVelocity = Mathf.Abs(playerRigidbody.velocity.x);
+        float characterVelocity = Mathf.Abs(playerRigidBody.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
         
         if (isClimbing && verticalMovement != 0) 
@@ -75,21 +76,21 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(float _horizontalMovement, float _verticalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, playerRigidbody.velocity.y);
-        playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref velocity, 0.01f);
+        Vector3 targetVelocity = new Vector2(_horizontalMovement, playerRigidBody.velocity.y);
+        playerRigidBody.velocity = Vector3.SmoothDamp(playerRigidBody.velocity, targetVelocity, ref velocity, 0.01f);
         
 
         if (isJumping)
         {
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0);
-            playerRigidbody.AddForce(new Vector2(0f, jumpForce + ((nbJump+1) * 50)));
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, 0);
+            playerRigidBody.AddForce(new Vector2(0f, jumpForce + ((nbJump+1) * 50)));
             isJumping = false;
         }
 
         if (isClimbing)
         {
-            Vector3 targetVelocityY = new Vector2(playerRigidbody.velocity.x, _verticalMovement);
-            playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocityY, ref velocity, 0.05f);
+            Vector3 targetVelocityY = new Vector2(playerRigidBody.velocity.x, _verticalMovement);
+            playerRigidBody.velocity = Vector3.SmoothDamp(playerRigidBody.velocity, targetVelocityY, ref velocity, 0.05f);
             
         }
 
