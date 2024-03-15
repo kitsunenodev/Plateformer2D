@@ -136,8 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 250
   climbSpeed: 200
-  jumpForce: 300
-  playerRigidbody: {fileID: 6613905083163162925}
+  jumpForce: 200
+  playerRigidBody: {fileID: 6613905083163162925}
   playerCollider: {fileID: 6613905083163162931}
   isClimbing: 0
   animator: {fileID: 6613905083163162929}
